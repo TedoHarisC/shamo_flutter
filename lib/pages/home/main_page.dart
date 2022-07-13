@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
         ),
         child: BottomAppBar(
           shape: const CircularNotchedRectangle(),
-          //color: backgroundColor4,
+          color: backgroundColor4,
           notchMargin: 10,
           clipBehavior: Clip.antiAlias,
           child: BottomNavigationBar(
@@ -134,7 +134,7 @@ class _MainPageState extends State<MainPage> {
     }
 
     return Scaffold(
-      backgroundColor: backgroundColor1,
+      backgroundColor: currentIndex == 0 ? backgroundColor1 : backgroundColor3,
       floatingActionButton: cartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customButtonNav(),

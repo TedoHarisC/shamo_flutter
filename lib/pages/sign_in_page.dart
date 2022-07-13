@@ -80,7 +80,7 @@ class SignInPage extends StatelessWidget {
 
     Widget passwordInput() {
       return Container(
-        margin: const EdgeInsets.only(top: 70),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
