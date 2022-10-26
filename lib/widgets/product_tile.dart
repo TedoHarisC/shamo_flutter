@@ -52,7 +52,7 @@ class ProductTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    product.name,
+                    product.name!,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,

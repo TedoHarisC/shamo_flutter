@@ -49,7 +49,7 @@ class CartCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      cart.product.name,
+                      cart.product.name!,
                       style: primaryTextStyle.copyWith(
                         fontWeight: semiBold,
                       ),

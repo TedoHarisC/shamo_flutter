@@ -53,7 +53,7 @@ class ProductCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 6),
                   Text(
-                    product.name,
+                    product.name!,
                     style: blackTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semiBold,
