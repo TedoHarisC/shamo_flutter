@@ -6,7 +6,7 @@ class ProductModel {
   late String name;
   late double price;
   late String description;
-  late String tags;
+  String? tags;
   CategoryModel? category;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -17,7 +17,7 @@ class ProductModel {
     required this.name,
     required this.price,
     required this.description,
-    required this.tags,
+    this.tags,
     this.category,
     this.createdAt,
     this.updatedAt,
