@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/model/message_model.dart';
 import 'package:shamo/model/product_model.dart';
+import 'package:shamo/providers/auth_provider.dart';
+import 'package:shamo/services/message_service.dart';
 import 'package:shamo/theme.dart';
 import 'package:shamo/widgets/chat_bubble.dart';
 
@@ -19,6 +23,8 @@ class DetailChatPage extends StatefulWidget {
 class _DetailChatPageState extends State<DetailChatPage> {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
     PreferredSize header() {
       return PreferredSize(
         preferredSize: const Size.fromHeight(70),
@@ -163,22 +169,28 @@ class _DetailChatPageState extends State<DetailChatPage> {
     }
 
     Widget content() {
-      return ListView(
-        padding: EdgeInsets.symmetric(
-          horizontal: defaultMargin,
-        ),
-        children: const [
-          ChatBubble(
-            isSender: true,
-            text: 'Hi, this item is still available?',
-            hasProduct: true,
-          ),
-          ChatBubble(
-            isSender: false,
-            text: 'Good night, This item is only available in size 42 and 43',
-          )
-        ],
-      );
+      return StreamBuilder<List<MessageModel>>(
+          stream: MessageService()
+              .getMessagesByUserId(userId: authProvider.user.id),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
+                padding: EdgeInsets.symmetric(
+                  horizontal: defaultMargin,
+                ),
+                children: snapshot.data!
+                    .map((MessageModel message) => ChatBubble(
+                          isSender: message.isFromUser,
+                          text: message.message,
+                        ))
+                    .toList(),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          });
     }
 
     return Scaffold(
