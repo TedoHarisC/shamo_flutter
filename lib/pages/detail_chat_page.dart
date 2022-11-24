@@ -21,9 +21,25 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController(text: '');
+
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleAddMessage() async {
+      await MessageService().addMessage(
+        user: authProvider.user,
+        isFromUser: true,
+        message: messageController.text,
+        product: widget.product,
+      );
+
+      setState(() {
+        widget.product = UninitializedProductModel();
+        messageController.text = '';
+      });
+    }
 
     PreferredSize header() {
       return PreferredSize(
@@ -148,6 +164,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     ),
                     child: Center(
                       child: TextFormField(
+                        controller: messageController,
+                        style: primaryTextStyle,
                         decoration: InputDecoration.collapsed(
                           hintText: 'Type Message...',
                           hintStyle: subtitleTextStyle,
@@ -157,9 +175,12 @@ class _DetailChatPageState extends State<DetailChatPage> {
                   ),
                 ),
                 const SizedBox(width: 12),
-                Image.asset(
-                  'assets/btn_send.png',
-                  width: 45,
+                GestureDetector(
+                  onTap: handleAddMessage,
+                  child: Image.asset(
+                    'assets/btn_send.png',
+                    width: 45,
+                  ),
                 ),
               ],
             ),
@@ -182,6 +203,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                     .map((MessageModel message) => ChatBubble(
                           isSender: message.isFromUser,
                           text: message.message,
+                          product: message.product,
                         ))
                     .toList(),
               );
