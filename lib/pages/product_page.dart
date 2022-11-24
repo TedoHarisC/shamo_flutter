@@ -412,7 +412,7 @@ class _ProductPageState extends State<ProductPage> {
                           showSuccessDialog();
                         },
                         style: TextButton.styleFrom(
-                          primary: primaryColor,
+                          foregroundColor: primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
