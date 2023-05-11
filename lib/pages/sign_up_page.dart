@@ -33,8 +33,10 @@ class _SignUpPageState extends State<SignUpPage> {
           username: usernameController.text,
           email: emailController.text,
           password: passwordController.text)) {
+        // ignore: use_build_context_synchronously
         Navigator.pushNamed(context, '/home');
       } else {
+        // ignore: use_build_context_synchronously
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: alertColor,

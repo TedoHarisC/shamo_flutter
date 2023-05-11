@@ -1,6 +1,17 @@
-# shamo
+# Shamo App (Flutter Version)
 
-A new Flutter project.
+<img src="assets/thumbnail.png"/>
+
+--
+
+Shamo is an Shoes Marketplace that build using Flutter (Provider State Management)
+
+-- 
+
+Learn from ([**BuildWithAngga**](https://buildwithangga.com/))
+
+## Author(s)
+**Tedo Haris Chandra** ([Follow my Instagram](https://instagram.com/dooooo.dev))
 
 ## Getting Started
 
