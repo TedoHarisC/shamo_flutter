@@ -1,6 +1,6 @@
 # Shamo App (Flutter Version)
 
-<img src="assets/thumbnail.png"/>
+<img src="assets/tumbnail.png"/>
 
 --
 
